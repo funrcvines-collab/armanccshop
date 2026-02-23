@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>armanccshop.in</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#070707;
+  color:#fff;
+}
+.card{
+  max-width:420px;
+  margin:40px auto 140px;
+  background:#111;
+  border-radius:22px;
+  padding:26px;
+  box-shadow:0 25px 80px rgba(0,0,0,.95);
+  text-align:center;
+}
+
+/* ===== BRAND ===== */
+.brand{
+  font-size:34px;
+  font-weight:900;
+}
+.arman{color:#00e5ff;text-shadow:0 0 15px #00e5ff}
+.cc{color:#fff;margin:0 6px;text-shadow:0 0 12px #fff}
+.shop{color:#ffb300;text-shadow:0 0 15px #ffb300}
+.tag{font-size:13px;color:#aaa;margin-bottom:24px}
+
+/* ===== RGB ANIMATIONS ===== */
+@keyframes rgb{
+  0%{box-shadow:0 0 12px red}
+  33%{box-shadow:0 0 18px lime}
+  66%{box-shadow:0 0 18px cyan}
+  100%{box-shadow:0 0 12px red}
+}
+@keyframes payRGB{
+  0%{box-shadow:0 0 20px #00e5ff}
+  33%{box-shadow:0 0 25px #00ff6a}
+  66%{box-shadow:0 0 25px #ffb300}
+  100%{box-shadow:0 0 20px #00e5ff}
+}
+
+/* ===== PLANS ===== */
+.plan{
+  padding:22px;
+  border-radius:20px;
+  margin-bottom:26px;
+  animation:rgb 3s infinite;
+}
+.normal{
+  background:linear-gradient(135deg,#0a243d,#04121f);
+  border:2px solid #00c8ff;
+}
+.premium{
+  background:linear-gradient(135deg,#2d1e00,#140c00);
+  border:2.5px solid #ffb300;
+}
+.price{font-size:32px;font-weight:900}
+.balance{font-size:14px;font-weight:800;color:#00e676}
+
+button{
+  width:100%;
+  padding:16px;
+  margin-top:18px;
+  border:none;
+  border-radius:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+.btn-normal{
+  background:linear-gradient(135deg,#00c8ff,#0077ff);
+  box-shadow:0 0 22px rgba(0,200,255,.9);
+}
+.btn-premium{
+  background:linear-gradient(135deg,#ffb300,#ff8f00);
+  box-shadow:0 0 28px rgba(255,179,0,.95);
+}
+
+/* ===== PAYMENT ===== */
+#payment{
+  display:none;
+  padding:22px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#0b0b0b,#030303);
+  animation:payRGB 3s infinite;
+}
+
+.pay-title{
+  font-size:26px;
+  font-weight:900;
+  margin-bottom:10px;
+  text-shadow:0 0 12px #ffb300;
+}
+
+.amount-box{
+  margin:14px auto;
+  padding:16px;
+  width:92%;
+  border-radius:18px;
+  font-size:24px;
+  font-weight:900;
+  background:#0f0f0f;
+  box-shadow:0 0 30px rgba(0,229,255,.9);
+  animation:payRGB 2.5s infinite;
+}
+
+.timer{
+  font-size:30px;
+  font-weight:900;
+  color:#ff3d00;
+  margin:12px 0;
+  text-shadow:0 0 10px #ff3d00;
+}
+
+.qr-note{
+  font-size:14px;
+  font-weight:800;
+  color:#00e5ff;
+  text-shadow:0 0 10px #00e5ff;
+}
+
+.qr img{
+  background:#fff;
+  padding:16px;
+  border-radius:22px;
+  margin:20px 0;
+  box-shadow:0 0 35px rgba(0,229,255,1);
+}
+
+.alert{
+  display:none;
+  color:#ff3d00;
+  font-size:13px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+}
+.done{
+  flex:1;
+  background:linear-gradient(135deg,#00ff88,#00c853);
+  box-shadow:0 0 25px rgba(0,255,136,.9);
+}
+.back{
+  flex:1;
+  background:#2a2a2a;
+  color:#fff;
+}
+
+/* ===== WHATSAPP ===== */
+.whatsapp{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  padding:14px 22px;
+  background:#25d366;
+  color:#000;
+  border-radius:40px;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 0 30px #25d366;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<!-- PLANS -->
+<div id="plans">
+  <div class="brand">
+    <span class="arman">ARMAN</span>
+    <span class="cc">CC</span>
+    <span class="shop">SHOP</span>
+  </div>
+  <div class="tag">Premium Digital Access</div>
+
+  <div class="plan normal">
+    <h2>NORMAL PLAN</h2>
+    <div class="price">₹1,899</div>
+    <div class="balance">BALANCE ₹20,000+</div>
+    <button class="btn-normal" onclick="openPay('NORMAL PLAN',1899)">PAY NOW</button>
+  </div>
+
+  <div class="plan premium">
+    <h2>PREMIUM PLAN</h2>
+    <div class="price">₹2,999</div>
+    <div class="balance">BALANCE ₹40,000+</div>
+    <button class="btn-premium" onclick="openPay('PREMIUM PLAN',2999)">PAY NOW</button>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment">
+  <div class="pay-title" id="planName"></div>
+
+  <div class="amount-box">
+    PAY ₹<span id="amountText"></span>
+  </div>
+
+  <div class="timer" id="timer">05:00</div>
+
+  <div class="qr-note">
+    UPI ID: <b id="upiText"></b><br>
+    AMOUNT: ₹<b id="payAmount"></b>
+  </div>
+
+  <div class="qr">
+    <img id="qrImg" width="220" height="220">
+  </div>
+
+  <div class="alert" id="alert">❌ Payment time expired</div>
+
+  <div class="actions">
+    <button class="done" onclick="donePay()">DONE</button>
+    <button class="back" onclick="goBack()">BACK</button>
+  </div>
+</div>
+
+</div>
+
+<a class="whatsapp" href="https://wa.me/918540957509" target="_blank">WhatsApp</a>
+
+<script>
+let timerInterval,timeLeft;
+
+function openPay(plan,amount){
+  document.getElementById("plans").style.display="none";
+  document.getElementById("payment").style.display="block";
+  document.getElementById("alert").style.display="none";
+
+  document.getElementById("planName").innerText=plan;
+  document.getElementById("amountText").innerText=amount;
+  document.getElementById("upiText").innerText="armanzero9@fam";
+  document.getElementById("payAmount").innerText=amount;
+
+  const upiURL=`upi://pay?pa=armanzero9@fam&pn=Arman CC Shop&am=${amount}&cu=INR`;
+  document.getElementById("qrImg").src=
+    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+
+    encodeURIComponent(upiURL);
+
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  timeLeft=300;
+  timerInterval=setInterval(()=>{
+    let m=Math.floor(timeLeft/60);
+    let s=timeLeft%60;
+    document.getElementById("timer").innerText=
+      String(m).padStart(2,'0')+":"+String(s).padStart(2,'0');
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      document.getElementById("alert").style.display="block";
+    }
+    timeLeft--;
+  },1000);
+}
+
+function donePay(){
+  if(timeLeft<=0){
+    document.getElementById("alert").style.display="block";
+  }else{
+    window.open("https://wa.me/918540957509","_blank");
+  }
+}
+
+function goBack(){
+  clearInterval(timerInterval);
+  document.getElementById("payment").style.display="none";
+  document.getElementById("plans").style.display="block";
+}
+</script>
+
+</body>
+</html>
